@@ -59,6 +59,4 @@ function draw() {
     }
   }
   angle -= 0.1;
-  
-  orbitControl();
-}
+ }
