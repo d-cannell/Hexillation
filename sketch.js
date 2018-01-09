@@ -52,7 +52,7 @@ function draw() {
       strokeWeight(0);
       rotateX(HALF_PI);
       rotateZ(HALF_PI);
-      ambientMaterial(180, 40, 255);
+      ambientMaterial(220, 80, 255);
       model(hexPrism);
 
       pop();
