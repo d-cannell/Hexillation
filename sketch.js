@@ -27,7 +27,6 @@ function setup() {
   }
   maxDist = dist(0, 0, width / 3, width / 3);
   frameRate(30);
-  orbitControl();
 }
 
 function draw() {
@@ -60,4 +59,6 @@ function draw() {
     }
   }
   angle -= 0.1;
+  
+  orbitControl();
 }
