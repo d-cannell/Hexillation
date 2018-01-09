@@ -57,7 +57,7 @@ function draw() {
       strokeWeight(checkBox.checked() ? 1 : 0);
       rotateX(HALF_PI);
       rotateZ(HALF_PI);
-      ambientMaterial(220, 80, 255);
+      ambientMaterial(220, 200, 80);
       model(hexPrism);
 
       pop();
