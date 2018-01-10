@@ -1,10 +1,11 @@
 let regDim = 20;
 let Hexes = [];
-let hexNum = 13;
+let hexNum = 15;
 let maxDist;
 let angle = 0;
 let hexPrism;
 let checkBox;
+let gotVars = false;
 
 function setup() {
   hexPrism = loadModel("assets/tinker.obj");
@@ -31,38 +32,37 @@ function setup() {
 
   checkBox = createCheckbox("Wireframe");
   checkBox.position(24, height + 24);
+
+  ambientLight(120);
+  pointLight(255, 255, 255, -width / 4, -height / 2, -width / 4)
+  scale(1, 1.5, 1);
+  translate(0, 20, 0);
+  stroke(255);
 }
 
 function draw() {
   background(0);
-  ambientLight(120);
-  pointLight(255, 255, 255, -width / 4, -height / 2, -width / 4)
-  translate(0, 20, 0);
   rotateX(-atan(1 / sqrt(2)));
   rotateY(PI / 4);
-  scale(1, 1.5, 1);
   for (let c of Hexes) {
     for (let obj of c) {
-      push();
 
-      let x = -1 * (obj.dim / 2);
-      let z = obj.dim;
+      push();
+      let b = 4;
       let d = dist(obj.w * obj.q * 0.75, (obj.h * obj.r) - (-0.5 * obj.h * obj.q), 0, 0);
-      let offset = map(d, 0, maxDist, -4, 4);
+      let offset = map(d, 0, maxDist, -b, b + b / 5);
       let a = angle + offset;
-      let h = map(sin(a), -1, 1, 1, 5);
+      let h = map(sin(a), -1, 1, 1, 6);
       translate(obj.w * obj.q * 0.75, (h * 100) / 4.5, (obj.h * obj.r) - (-0.5 * obj.h * obj.q));
       scale(2, h, 2);
-      stroke(255);
       strokeWeight(checkBox.checked() ? 1 : 0);
       rotateX(HALF_PI);
       rotateZ(HALF_PI);
-      ambientMaterial(220, 200, 80);
+      ambientMaterial(80, 20, 255);
       model(hexPrism);
 
       pop();
     }
   }
   angle -= 0.1;
-  orbitControl();
 }
